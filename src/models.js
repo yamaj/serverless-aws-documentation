@@ -58,7 +58,7 @@ module.exports = {
         cfModel.Properties.Description = model.description
       }
       if (cfModel.DependsOn.length === 0) {
-        delete _response.DependsOn;
+        delete cfModel.DependsOn;
       }
       return replaceModelRefs(restApiId, cfModel)
     }
