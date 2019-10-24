@@ -51,12 +51,15 @@ module.exports = {
           Name: model.name,
           Schema: model.schema || {},
         },
+        DependsOn: model.dependsOn ? model.dependsOn.map(val => { return `${val}Model` }) : []
       }
 
       if (model.description) {
         cfModel.Properties.Description = model.description
       }
-
+      if (cfModel.DependsOn.length === 0) {
+        delete _response.DependsOn;
+      }
       return replaceModelRefs(restApiId, cfModel)
     }
   },
